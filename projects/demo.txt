@@ -5,3 +5,7 @@
 #variable=+This input will be printed:
 #-variable
 /To stop text until enter is pressed, just use "/" at the start of a sentence!
+-You can also use variables for math! Just put "math." after declaring it!
+#variable=math.2+5
+-2+5:
+#-variable

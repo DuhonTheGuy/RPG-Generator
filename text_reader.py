@@ -21,6 +21,12 @@ class reader:
 				if var[1].startswith("+"):
 					var[1] = input(var[1].replace("+", ""))
 					variables[str(var[0])] = var[1]
+				elif var[1].startswith("math."):
+					var[1] = var[1].replace("math.", "")
+					if "+" in var[1]:
+						numbers = var[1].split("+")
+						numbers = [int(i) for i in numbers]
+						variables[str(var[0])] = sum(numbers)
 			elif line.startswith("/"):
 				line = line[1:].replace("\n", "")
 				input(line)
