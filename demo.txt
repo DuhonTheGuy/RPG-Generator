@@ -1,0 +1,7 @@
+-Hello! Welcome to RPG Generator!
+-To get started, write a file similar to this and specify the path!
+-The keywords used are "-" for lines of text, "+" for player input, and "#" for variable editing/creating, just name the variable first if you want to modify it, if it doesn't exist, it will be created!
+-You can mix inputs and variables, too! Just put "+" after the variable name, like this:
+#variable=+This input will be printed:
+#-variable
+/To stop text until enter is pressed, just use "/" at the start of a sentence!
