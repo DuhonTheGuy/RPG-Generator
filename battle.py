@@ -4,6 +4,7 @@ class Battle:
 	base_health = 100
 	def fight(equipped, hit_chance, enemy_name="Monster", enemy_hp=10):
 		battle = True
+		# While the battle is going on, well, battle goes on
 		while battle:
 			a = int(input("What to do?\n1. Fight\n2. Run"))
 			if a == 1:
