@@ -14,3 +14,5 @@
 
 /Another thing that can be done easily is adding items to the player's inventory! That can be done with ".item". "+" gives an item, and "-" removes it. Add stats and a slot for it with "^" after the item name.
 .item=+Yogurt^weapon^1
+/You can also take items by using "-" instead of "+" and saying the item name
+.item=-Yogurt
