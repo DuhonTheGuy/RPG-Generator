@@ -10,8 +10,6 @@ class Battle:
 			if a == 1:
 				chance = random.random()
 				if chance > (int(hit_chance)/100):
-					print(equipped)
-					print(type(equipped))
 					weapon = equipped["weapon"]
 					print(f"Hit for {weapon[1]}!\n")
 					if int(weapon[1]) > int(enemy_hp):

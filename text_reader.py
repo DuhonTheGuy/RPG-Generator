@@ -21,6 +21,7 @@ class reader:
 			if line.startswith("-"):
 				line = line[1:].replace("\n", "")
 				print(line)
+				print()
 			# Code to print variables
 			elif line.startswith("#-"):
 				line = line[2:].replace("\n", "")
@@ -28,6 +29,7 @@ class reader:
 					print(f"Error: Variable not found, '{line}'")
 				else:
 					print(f"{variables[str(line)]}")
+					print()
 			# Code to declare variables
 			elif line.startswith("#"):
 				line = line[1:].replace("\n", "")
@@ -42,10 +44,11 @@ class reader:
 						numbers = var[1].split("+")
 						numbers = [int(i) for i in numbers]
 						variables[str(var[0])] = sum(numbers)
-			# Print wihth input waiting
+			# Print with input waiting
 			elif line.startswith("/"):
 				line = line[1:].replace("\n", "")
 				input(line)
+				print()
 			# Built-in battle
 			elif line.startswith(".battle"):
 				line = line[1:].replace("\n", "")
@@ -70,4 +73,12 @@ class reader:
 						print("Error: Slot not valid.")
 						return
 					inventory[str(name)] = Inventory.add(name, slot, stats, inventory)
-					print(f"You got a {name}! It's a {slot} with {stats} power!")
+					print("######################################################")
+					print(f"||   You got a {name}! It's a {slot} with {stats} power!  ||")
+					print("######################################################")
+					print()
+				elif line.startswith("-"):
+					item = line[1:]
+					if item.replace("\n", "") in inventory:
+						inventory.pop(str(item.replace("\n", "")))
+						print(f"Your {item[:len(item) - 1]} has been taken from your pockets!")
