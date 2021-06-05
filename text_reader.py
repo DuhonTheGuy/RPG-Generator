@@ -15,31 +15,38 @@ class reader:
 		with open(str(path), "r") as f:
 			load = f.readlines()
 		variables = {}
+		# Starts reading line by line
 		for line in load:
+			# Code to print
 			if line.startswith("-"):
 				line = line[1:].replace("\n", "")
 				print(line)
+			# Code to print variables
 			elif line.startswith("#-"):
 				line = line[2:].replace("\n", "")
 				if str(line) not in variables:
 					print(f"Error: Variable not found, '{line}'")
 				else:
 					print(f"{variables[str(line)]}")
+			# Code to declare variables
 			elif line.startswith("#"):
 				line = line[1:].replace("\n", "")
 				var = line.split("=")
 				if var[1].startswith("+"):
 					var[1] = input(var[1].replace("+", ""))
 					variables[str(var[0])] = var[1]
+				# Basic math with variables
 				elif var[1].startswith("math."):
 					var[1] = var[1].replace("math.", "")
 					if "+" in var[1]:
 						numbers = var[1].split("+")
 						numbers = [int(i) for i in numbers]
 						variables[str(var[0])] = sum(numbers)
+			# Print wihth input waiting
 			elif line.startswith("/"):
 				line = line[1:].replace("\n", "")
 				input(line)
+			# Built-in battle
 			elif line.startswith(".battle"):
 				line = line[1:].replace("\n", "")
 				line = line.split("=")
@@ -48,6 +55,7 @@ class reader:
 				name = args[0]
 				health = args[1]
 				Battle.fight(equipped, hit_chance, name, health)
+			# Inventory shenanigans
 			elif line.startswith(".item"):
 				line = line.split("=")
 				line = line[1]
