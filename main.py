@@ -9,6 +9,7 @@ Reader = reader()
 # Lists projects, still a WIP
 if option == 1:
 	path = os.path.join(sys.path[0], "projects\\")
+
 	files = os.listdir(path)
 	print(f"Current directory: {path}")
 	print("---------------------------------------------------------------")
@@ -24,3 +25,4 @@ elif option == 2:
 	path = input("Surely! What is the path?\n")
 	#reader.read(path)
 	Reader.read(path)
+
