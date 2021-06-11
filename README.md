@@ -1,7 +1,16 @@
 # Overview
 
 RPG Generator is a fun little side project (one of many) I've been making, so don't expect too much activity. The main idea is that anyone can easily make a text file
-and input it into the program to create their own, little text-based adventures! Currently in REALLY early progress.
+and input it into the program to create their own, little text-based adventures!
+
+# Demo
+
+The files include "demo.txt", which showcases all the current build's features. Reading it while playing encouraged!  
+To make your own projects, either specify a path or put it in the projects folder.
+
+# Contributing
+
+If you are feeling generous to help me out, feel free to! All the stuff that needs doing is in the TODO issue, contact me for any questions or concerns.
 
 # Contact
 
