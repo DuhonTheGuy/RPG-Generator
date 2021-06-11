@@ -62,6 +62,7 @@ class reader:
 			elif line.startswith(".item"):
 				line = line.split("=")
 				line = line[1]
+				# Adding item
 				if line.startswith("+"):
 					item = line[1:].split("^")
 					name = item[0]
@@ -77,8 +78,19 @@ class reader:
 					print(f"||   You got a {name}! It's a {slot} with {stats} power!  ||")
 					print("######################################################")
 					print()
+				# Yoinking item
 				elif line.startswith("-"):
 					item = line[1:]
 					if item.replace("\n", "") in inventory:
 						inventory.pop(str(item.replace("\n", "")))
 						print(f"Your {item[:len(item) - 1]} has been taken from your pockets!")
+			elif line.startswith("%"):
+				choiceTitle = line.replace("%", "").split(":")
+				choice = [str(count + 1) + ". " + str(item) for count, item in enumerate(choiceTitle[1].split("^"))]
+				print("You are presented with a choice: " + choiceTitle[0] + "\n" + ' \n'.join(choice)) # Prints out all of the choices, and since f strings can't have "\n" I had to make this monstrocity
+				try:
+					a = int(input())
+					print(f"You choose {choice[a - 1].replace(".", ",")}")
+				except:
+					print("Error: Choice answer must be a number.")
+					break

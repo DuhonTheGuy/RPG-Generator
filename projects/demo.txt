@@ -16,3 +16,5 @@
 .item=+Yogurt^weapon^1
 /You can also take items by using "-" instead of "+" and saying the item name
 .item=-Yogurt
+/You can also make the pĺayer choose between many options, with the starting symbol "%"
+%This is a test:Option 1^Option 2
