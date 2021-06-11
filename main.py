@@ -6,7 +6,7 @@ option = int(input("What do you want to do?\n1. List projects in current path\n2
 
 # Lists projects, still a WIP
 if option == 1:
-	path = os.path.join(sys.path[0], "projects/")
+	path = os.path.join(sys.path[0], "projects\")
 	files = os.listdir(path)
 	print(f"Current directory: {path}")
 	print("---------------------------------------------------------------")
