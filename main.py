@@ -1,10 +1,43 @@
-from functools import reduce
-from text_reader import Reader
+"""
+Main file for python program.
+
+Constants :
+None
+
+Classes :
+None
+
+Functions :
+start_menu -> (None) -- Runs the start menu, which returns None.
+
+Dependencies :
+os (default) -- For managing file paths.
+sys (default) -- For managing file paths.
+functools.reduce (default) -- Not in use?
+text_reader.Reader (local) -- For interpreting text files.
+"""
+# Default Dependencies
+from functools import reduce	# TODO : Not sure why this is here
 import os
 import sys
 
+# Exsternal Dependencies
+None
+
+# Local Dependencies
+from text_reader import Reader
+
 # Function to allow backtracking to the menu after a cancelled "from path".
-def start_menu():
+def start_menu() -> None:
+	"""
+	Runs the start menu
+
+	Parameters :
+	None
+
+	Returns :
+	None
+	"""
 	# Main loop for start menu
 	while True:
 		# Option loop for menu selection
@@ -18,7 +51,7 @@ def start_menu():
 		
 		reader = Reader()
 
-		# Lists projects in current path.  (still a WIP)
+		# Lists projects in current path.  (still a WIP)  # TODO : Finish this.
 		if option == 1:
 			path = os.path.join(sys.path[0], "projects\\")
 			files = os.listdir(path)
@@ -83,8 +116,8 @@ def start_menu():
 		
 		# Stops the program.
 		elif option == 3:
-			# Breaks the main loop which exits the program.
-			break
+			# returns which closes the program
+			return
 		
 		# Loops through the program again.
 		else:
