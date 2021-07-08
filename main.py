@@ -83,13 +83,14 @@ def start_menu():
 		
 		# Stops the program.
 		elif option == 3:
-			exit()
+			# Breaks the main loop which exits the program.
+			break
 		
 		# Loops through the program again.
 		else:
-			# Breaks the main loop which exits the program
+			# Repeats the menu loop again.
 			print("That's an invalid option!\n") # Unnecessary formatting choice.
-			break
+			continue
 
 
 if __name__ == '__main__':
