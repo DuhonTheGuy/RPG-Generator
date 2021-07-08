@@ -7,7 +7,7 @@ equipped = {"helm": ["Test Helm", 100000], "chestpiece": ["Test Chestpiece", 100
 
 inventory = {}
 
-class reader:
+class Reader:
 	def __init__(self):
 		self.equipped = {"helm": ["Test Helm", 100000], "chestpiece": ["Test Chestpiece", 100000], "leggings": ["Test Leggings", 100000], "weapon": ["Test Sword", 100000]}
 		self.inventory = {}
