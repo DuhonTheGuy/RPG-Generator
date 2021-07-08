@@ -4,7 +4,7 @@ import os
 import sys
 
 # Function to allow backtracking to the menu after a cancelled "from path".
-def startMenu():
+def start_menu():
 	while True:
 		try:
 			option = int(input("What do you want to do?\n1. List projects in current path\n2. Open path\n3. Exit\n"))
@@ -52,14 +52,14 @@ def startMenu():
 					# End the checking loop.
 					pathChecking = False
 					print("\n") # Unnecessary formatting choice.
-					startMenu()
+					start_menu()
 	# Exits.
 	elif option == 3:
 		exit()
 	else:
 		print("That's an invalid option!\n") # Unnecessary formatting choice.
-		startMenu()
+		start_menu()
 
 
 if __name__ == '__main__':
-	startMenu()
+	start_menu()
