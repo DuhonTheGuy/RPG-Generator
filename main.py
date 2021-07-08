@@ -27,6 +27,7 @@ None
 # Local Dependencies
 from text_reader import Reader
 
+
 # Function to allow backtracking to the menu after a cancelled "from path".
 def start_menu() -> None:
 	"""
