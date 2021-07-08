@@ -5,7 +5,14 @@ import sys
 
 # Function to allow backtracking to the menu after a cancelled "from path".
 def startMenu():
-	option = int(input("What do you want to do?\n1. List projects in current path\n2. Open path\n3. Exit\n"))
+	while True:
+		try:
+			option = int(input("What do you want to do?\n1. List projects in current path\n2. Open path\n3. Exit\n"))
+			break
+		except ValueError:
+			print('Please select a valid option')
+			continue
+	
 	Reader = reader()
 
 	# Lists projects, still a WIP
