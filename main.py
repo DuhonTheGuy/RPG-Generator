@@ -1,5 +1,5 @@
 from functools import reduce
-from text_reader import reader
+from text_reader import Reader
 import os
 import sys
 
@@ -13,7 +13,7 @@ def start_menu():
 			print('Please select a valid option')
 			continue
 	
-	Reader = reader()
+	reader = Reader()
 
 	# Lists projects, still a WIP
 	if option == 1:
@@ -28,7 +28,7 @@ def start_menu():
 		print(files)
 		result = path + files[a - 1]
 		#reader.read(result)
-		Reader.read(result)
+		reader.read(result)
 	# Asks for path
 	elif option == 2:
 		# Check if specified path exists.
@@ -40,7 +40,7 @@ def start_menu():
 				#reader.read(path)
 				# End the checking loop.
 				pathChecking = False
-				Reader.read(path)
+				reader.read(path)
 			else:
 				print("No such path exists!")
 				option = input("Try again? (1. No / 2. Yes)\n")
