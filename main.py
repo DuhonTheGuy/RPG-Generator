@@ -15,7 +15,7 @@ def start_menu():
 	
 	reader = Reader()
 
-	# Lists projects, still a WIP
+	# Lists projects in current path.  (still a WIP)
 	if option == 1:
 		path = os.path.join(sys.path[0], "projects\\")
 
@@ -29,7 +29,8 @@ def start_menu():
 		result = path + files[a - 1]
 		#reader.read(result)
 		reader.read(result)
-	# Asks for path
+	
+	# Opens specific file path.
 	elif option == 2:
 		# Check if specified path exists.
 		pathChecking = True
@@ -53,12 +54,15 @@ def start_menu():
 					pathChecking = False
 					print("\n") # Unnecessary formatting choice.
 					start_menu()
-	# Exits.
+	
+	# Stops the program.
 	elif option == 3:
 		exit()
+	
+	# Loops through the program again.
 	else:
 		print("That's an invalid option!\n") # Unnecessary formatting choice.
-		start_menu()
+		start_menu()	# TODO : Not the best way todo this should be looping the entire thing.
 
 
 if __name__ == '__main__':
