@@ -60,4 +60,6 @@ def startMenu():
 		print("That's an invalid option!\n") # Unnecessary formatting choice.
 		startMenu()
 
-startMenu()
+
+if __name__ == '__main__':
+	startMenu()
