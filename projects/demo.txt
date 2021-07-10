@@ -1,20 +1,39 @@
 -Hello! Welcome to RPG Generator!
+
 -To get started, write a file similar to this and specify the path!
+
 -The keywords used are "-" for lines of text, "+" for player input, and "#" for variable editing/creating, just name the variable first if you want to modify it, if it doesn't exist, it will be created!
+
 -You can mix inputs and variables, too! Just put "+" after the variable name, like this:
+
 #variable=+This input will be printed:
+
 #-variable
+
 /To stop text until enter is pressed, just use "/" at the start of a sentence!
+
 -You can also use variables for math! Just put "math." after declaring it!
+
 #variable=math.2+5
+
 -2+5:
+
 #-variable
+
 /The following is a built-in battle setup! To use it, simply type ".battle=" with the necessary arguments after the "="! In this case (in this order), they are enemy name, health value, and enemy difficulty (defines the hit chance)! It'll do the rest of the work for you.
+
 .battle=Rat,5,5
 
-/Another thing that can be done easily is adding items to the player's inventory! That can be done with ".item". "+" gives an item, and "-" removes it. Add stats and a slot for it with "^" after the item name.
+-Of course, this battle was really unfair because that is the debug gear! Something that can be done easily is adding items to the player's inventory! That can be done with ".item". "+" gives an item, and "-" removes it. Add stats and a slot for it with "^" after the item name.
+/To force equipping an item, use "@" before the item name. If it is in the inventory, it will be equipped. Otherwise, you'll be told that it's missing.
+
 .item=+Yogurt^weapon^1
-/You can also take items by using "-" instead of "+" and saying the item name
+.item=@Yogurt
+
+/You can also take items by using "-" instead of "+" and saying the item name.
+
 .item=-Yogurt
+
 /You can also make the pĺayer choose between many options, with the starting symbol "%"
+
 %This is a test:Option 1^Option 2

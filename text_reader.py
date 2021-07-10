@@ -2,14 +2,16 @@ import time
 from battle import Battle
 # from battle import Boss
 from inventory import Inventory
+from math_handler import Handler
 
 equipped = {"helm": ["Test Helm", 100000], "chestpiece": ["Test Chestpiece", 100000], "leggings": ["Test Leggings", 100000], "weapon": ["Test Sword", 100000]}
 
 inventory = {}
 
-class reader:
+class Reader:
 	def __init__(self):
 		self.equipped = {"helm": ["Test Helm", 100000], "chestpiece": ["Test Chestpiece", 100000], "leggings": ["Test Leggings", 100000], "weapon": ["Test Sword", 100000]}
+		# self.equipped = {}
 		self.inventory = {}
 		self.variables = {}
 		self.slotList = ["weapon", "helmet", "chestpiece", "leggings"]
@@ -74,9 +76,10 @@ class reader:
 
 	def printLine(self, line):
 		print(line)
+		print()
 
 	def printVar(self, line):
-		if str(line) not in self.variables:
+		if str(line) not in self.variables:	
 			print(f"Error: Variable not found, '{line}'")
 		else:
 			print(f"{self.variables[str(line)]}")
@@ -90,10 +93,9 @@ class reader:
 		# Basic math with variables
 		elif var[1].startswith("math."):
 			var[1] = var[1].replace("math.", "")
-			if "+" in var[1]:
-				numbers = var[1].split("+")
-				numbers = [int(i) for i in numbers]
-				self.variables[str(var[0])] = sum(numbers)
+			args = var[1]
+			Handler.handle(args)
+			
 
 	def printLineWait(self, line):
 		input(line)
@@ -105,13 +107,14 @@ class reader:
 		hit_chance = args[2]
 		name = args[0]
 		health = args[1]
-		Battle.fight(self.equipped, hit_chance, name, health)
+		Battle(self.equipped, hit_chance, name, health)
+		Battle.start_battle()
 
 	def handleInventory(self, line):
 		line = line.split("=")
 		line = line[1]
 		if line.startswith("+"):
-			item = line.split("^")
+			item = line[1:].split("^")
 			name = item[0]
 			stats = int(item[2])
 			slot = item[1]
@@ -126,10 +129,21 @@ class reader:
 			print("######################################################")
 			print()
 		elif line.startswith("-"):
-			item = line
-			if item.replace("\n", "") in self.inventory:
-				self.inventory.pop(str(item.replace("\n", "")))
-				print(f"Your {item[:len(item) - 1]} has been taken from your pockets!")
+			item = line[1:]
+			if item in self.inventory:
+				self.inventory.pop(item)
+				print(f"Your {item} has been taken from your pockets!")
+		elif line.startswith("@"):
+			item = line[1:]
+			if item in self.inventory:
+				slot = self.inventory[item]["slot"] # Assigns the slot the item is for.
+				equipped[slot] = {
+
+					"name": str(item),
+					"stat": int(self.inventory[item]["stat"]) # returns the stat
+
+				}
+				print(f"You have equipped the {item}.")
 
 	def handleLines(self, line, commandSize):
 		line = line[int(commandSize):].replace("\n", "")
