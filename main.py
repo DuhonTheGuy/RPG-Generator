@@ -1,6 +1,7 @@
 """
 Main file for python program.
 
+
 Constants :
 None
 
@@ -9,6 +10,7 @@ None
 
 Functions :
 start_menu -> (None) -- Runs the start menu, which returns None.
+
 
 Dependencies :
 os (default) -- For managing file paths.
@@ -23,7 +25,6 @@ import sys
 
 # Exsternal Dependencies
 None
-
 # Local Dependencies
 from text_reader import Reader
 
@@ -145,3 +146,4 @@ def start_menu() -> None:
 
 if __name__ == '__main__':
 	start_menu()
+
