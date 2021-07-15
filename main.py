@@ -1,11 +1,17 @@
 """
 Main file for python program.
+
+
 Constants :
 None
+
 Classes :
 None
+
 Functions :
 start_menu -> (None) -- Runs the start menu, which returns None.
+
+
 Dependencies :
 os (default) -- For managing file paths.
 sys (default) -- For managing file paths.
@@ -19,7 +25,6 @@ import sys
 
 # Exsternal Dependencies
 None
-
 # Local Dependencies
 from text_reader import Reader
 
@@ -27,9 +32,11 @@ from text_reader import Reader
 def menu_input(input_text:list, data_type:type) -> (str or int):
 	"""
 	For options selections catchs errors.
+
 	Parameters :
 	input_text (list) -- A string containing the text to display for the input prompt, or, a list displaying each input and then a line break.
 	data_type (type) -- A data type to determine what kind of input to look for.
+
 	Returns :
 	option -> (int) -- The order value of the setting selected. (Only returned if data_type = 'int')
 	option -> (str) -- The string the user selected. (Only returned if data_type = 'str')
@@ -56,8 +63,10 @@ def menu_input(input_text:list, data_type:type) -> (str or int):
 def start_menu() -> None:
 	"""
 	The main loop of the program.
+
 	Parameters :
 	None
+
 	Returns :
 	None
 	"""
@@ -137,3 +146,4 @@ def start_menu() -> None:
 
 if __name__ == '__main__':
 	start_menu()
+
