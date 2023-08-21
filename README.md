@@ -5,7 +5,7 @@ and input it into the program to create their own, little text-based adventures!
 
 # Demo
 
-The files include "demo.txt", which showcases all the current build's features. Reading it while playing encouraged!  
+The files include "demo.rpg", which showcases all the current build's features. Reading it while playing encouraged!  Also, there's "demo.start", which is the start file that dictates what your starting stats will be (it must share a name with the .rpg file)
 To make your own projects, either specify a path or put it in the projects folder.
 
 # Contributing
