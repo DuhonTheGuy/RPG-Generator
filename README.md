@@ -15,7 +15,7 @@ If you are feeling generous to help me out, feel free to! All the stuff that nee
 # Contact
 
 My contact email is duhontheguy@gmail.com, but you can also contact me on Discord under the username duhon (If your friend request is declined, go for the email,
-I might have confused you with spam).
+I might have confused you with spam). There's also the official Discord, in the following link: https://discord.gg/FKNWFepqw4
 
 # Activity
 
