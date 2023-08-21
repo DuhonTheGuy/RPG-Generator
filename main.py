@@ -8,7 +8,6 @@ def startMenu():
 	option = int(input("What do you want to do?\n1. List projects in current path\n2. Open path\n3. Exit\n"))
 	Reader = reader()
 
-	# Lists projects, still a WIP
 	if option == 1:
 		path = os.path.join(sys.path[0], "projects\\")
 
@@ -16,12 +15,14 @@ def startMenu():
 		print(f"Current directory: {path}")
 		print("---------------------------------------------------------------")
 		for count, file in enumerate(files):
+			ext = file.split(".")[1]
+			if ext == "start":
+				pass
 			print(f"{count + 1}. {file}")
 		a = int(input("Which one do you want to access? "))
-		print(files)
 		result = path + files[a - 1]
-		#reader.read(result)
-		Reader.read(result)
+		startFile = result[:-3:] + "start"
+		Reader.read(result, startFile)
 	# Asks for path
 	elif option == 2:
 		# Check if specified path exists.

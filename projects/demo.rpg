@@ -9,8 +9,8 @@
 #variable=math.2+5
 -2+5:
 #-variable
-/The following is a built-in battle setup! To use it, simply type ".battle=" with the necessary arguments after the "="! In this case (in this order), they are enemy name, health value, and enemy difficulty (defines the hit chance)! It'll do the rest of the work for you.
-.battle=Rat,5,5
+/The following is a built-in battle setup! To use it, simply type ".battle=" with the necessary arguments after the "="! In this case (in this order), they are enemy name, health value, enemy armor, weapon and their evasion. (as an example, "Goblin, 10, (Leather;2), (Stick;3), 0").
+.battle=Goblin, 10, (Leather;2), (Stick;3), 0
 
 /Another thing that can be done easily is adding items to the player's inventory! That can be done with ".item". "+" gives an item, and "-" removes it. Add stats and a slot for it with "^" after the item name.
 .item=+Yogurt^weapon^1

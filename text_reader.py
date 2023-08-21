@@ -1,29 +1,49 @@
+# ====================================
+# Basically the compiler
+# ====================================
 import time
-from battle import Battle
-# from battle import Boss
-from inventory import Inventory
+import battle
+import inventory
+import item
+import player
+import npc
 
-equipped = {"helm": ["Test Helm", 100000], "chestpiece": ["Test Chestpiece", 100000], "leggings": ["Test Leggings", 100000], "weapon": ["Test Sword", 100000]}
-
-inventory = {}
 
 class reader:
+	"""
+	The gear and player lists describe the objects. For gear you'd do [[("item1", stats, slot), ("item2", stats, slot)],[("equip1", stats, slot), ("equip2", stats, slot)]], where the first nested list is the bag, the second is the equips.
+	For the player its just a 4-tuple of the stats
+	"""
 	def __init__(self):
-		self.equipped = {"helm": ["Test Helm", 100000], "chestpiece": ["Test Chestpiece", 100000], "leggings": ["Test Leggings", 100000], "weapon": ["Test Sword", 100000]}
-		self.inventory = {}
 		self.variables = {}
-		self.slotList = ["weapon", "helmet", "chestpiece", "leggings"]
+		self.items = None
+		self.playerStats = None
 
-	def read(self, path):
-		slotList = ["weapon", "helmet", "chestpiece", "leggings"]
-		# global equipped
-		# global inventory
+	def start(self, gear=[[],[]], playerStats=(100, 0, 0, 0)):
+		# Initializes the player's inventory
+		bag = []
+		for i in gear[0]:
+			bag.append(item.Item(int(i[2]), i[0], int(i[1])))
+		equipped = [0]*4
+		for i in gear[1]:
+			equipped[i[2]] = (item.Item(int(i[2]), i[0], int(i[1])))
+		self.items = inventory.Inventory(bag, equipped)
+
+		self.playerStats = player.Player(int(playerStats[0]), int(playerStats[1]), int(playerStats[2]), int(playerStats[3]))
+
+	def read(self, path, startFile):
+		with open(str(startFile), "r") as j:
+			load = j.readlines()
+		gear = eval(load[0].replace("\n", ""))
+		playerStats = eval(load[1].replace("\n", ""))
+		self.start(gear, playerStats)
+		j.close()
 		with open(str(path), "r") as f:
 			load = f.readlines()
-		#variables = {}
 		# Starts reading line by line
 		for line in load:
 			# Code to print
+
 			if line.startswith("-"):
 				self.printLine(line)
 
@@ -85,32 +105,38 @@ class reader:
 	def handleBattle(self, line):
 		line = line[1:].replace("\n", "")
 		line = line.split("=")
-		args = line[1].split(",")
-		hit_chance = args[2]
+		args = line[1].split(", ")
 		name = args[0]
 		health = args[1]
-		Battle.fight(self.equipped, hit_chance, name, health)
+		armor = args[2].replace("(", "").replace(")", "").split(";")
+		armorItem = item.Item(2, armor[0], int(armor[1]))
+		weapon = args[3].replace("(", "").replace(")", "").split(";")
+		evasion = args[4]
+		weaponItem = item.Item(2, weapon[0], int(weapon[1]))
+		enemyItems = inventory.Inventory([], [weaponItem, None, armorItem, None])
+		enemy = npc.NPC(enemyItems, name, 1, 0, int(health), int(evasion))
+		basicallyStreetFighter = battle.Battle(self.items, enemy, self.playerStats)
+		battle.Battle.fightLoop(basicallyStreetFighter)
 
 	def handleInventory(self, line):
 		line = line.split("=")
 		line = line[1]
 		if line.startswith("+"):
-			item = line[1:].split("^")
-			name = item[0]
-			stats = int(item[2])
-			slot = item[1]
-			if slot in self.slotList:
-				pass
-			else:
-				print("Error: Slot not valid.")
-				return
-			self.inventory[str(name)] = Inventory.add(name, slot, stats, self.inventory)
+			itemRead = line[1:].split("^")
+			name = itemRead[0]
+			stats = int(itemRead[2])
+			slot = itemRead[1]
+			obj = item.Item(slot, name, stats)
+			self.items.give(obj)
 			print("######################################################")
 			print(f"||   You got a {name}! It's a {slot} with {stats} power!  ||")
 			print("######################################################")
 			print()
 		elif line.startswith("-"):
-			item = line[1:]
-			if item.replace("\n", "") in self.inventory:
-				self.inventory.pop(str(item.replace("\n", "")))
-				print(f"Your {item[:len(item) - 1]} has been taken from your pockets!")
+			itemRead = line[1:]
+			inv = self.items.nameList()
+			itemReadName = itemRead.replace("\n", "")
+			if itemRead.replace("\n", "") in [_[0] for _ in inv]:
+				ind = [_[0] for _ in inv].index(itemRead.replace("\n", ""))
+				self.items.take([inv[ind][1]])
+				print(f"Your {itemReadName} has been taken from your pockets!")
